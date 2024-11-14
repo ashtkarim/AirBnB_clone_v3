@@ -58,7 +58,7 @@ class BaseModel:
         models.storage.new(self)
         models.storage.save()
 
-    def to_dict(self, secure_password=True):
+    def to_dict(self):
         """
         Method to return a dictionary representation of the BaseModel instance
         """
@@ -71,8 +71,7 @@ class BaseModel:
         dictionary.pop('_sa_instance_state', None)
 
         if getenv('HBNB_TYPE_STORAGE') == 'db':
-            if secure_password:
-                dictionary.pop('password', None)
+            dictionary.pop('password', None)
         return dictionary
 
     def delete(self):
